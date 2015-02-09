@@ -1,12 +1,10 @@
 # This class will install the syslinux images into the tftp root directory.
 
-class pxe::syslinux {
-
-  include pxe::params
-
-  $syslinux_dir     = $pxe::params::syslinux_dir
-  $syslinux_archive = $pxe::params::syslinux_archive
-  $tftp_root        = $pxe::tftp_root
+class pxe::syslinux (
+  $syslinux_dir     = $pxe::params::syslinux_dir,
+  $syslinux_archive = $pxe::params::syslinux_archive,
+  $tftp_root        = $pxe::tftp_root,
+) inherits pxe::params {
 
   exec { 'syslinux_install':
     path    => ['/bin', '/usr/bin', '/usr/local/bin'],
